@@ -1,17 +1,22 @@
-var nthfibonacci = function (n) {
-	var getFib, memo, nMinusOne, nMinusTwo;
-	memo = {};
-	getFib =  function (n) {
-		if (n === 0 || n === 1) {
-			if (!memo[n]) {
-				memo[n] = n;
+var nthFib = function(n) {
+	var memo, nMinusOne, nMinusTwo, getFib;
+  memo = {};
+  
+  getFib = function(number) {
+  	if (number === 0 || number === 1) {
+    	// if number doesnt exist, store it
+    	if(!memo[number]) {
+      	memo[number] = number;
 			}
-			return memo[n];
+      return memo[number];
 		}
-		nMinusOne = memo[n-1] || nthfibonacci(n-1);
-		nMinusTwo = memo[n-2] || nthfibonacci(n-2);
-		memo[n] = nMinusOne + nMinusTwo;
-		return memo[n];
+    nMinusOne = memo[number-1] || nthFib(number-1);
+    nMinusTwo = memo[number-2] || nthFib(number-2);
+    memo[number] = nMinusOne + nMinusTwo;
+    return memo[number];
 	}
-	return getFib(n);
+  
+  return getFib(n);
 }
+
+nthFib(9);
